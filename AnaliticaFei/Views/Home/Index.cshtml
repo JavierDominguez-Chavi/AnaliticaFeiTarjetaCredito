@@ -1,0 +1,108 @@
+﻿@model AnaliticaFei.Models.TarjetaViewModel
+
+@{
+    ViewData["Title"] = "Valida numeros de tarjeta de credito";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/tarjetacredito.css" />
+}
+
+@section Scripts {
+    <partial name = "_ValidationScriptsPartial" />
+    <script src="~/js/tarjetacredito.js" asp-append-version="true"></script>
+    <script src="~/js/home.js" asp-append-version="true"></script>
+}
+
+<article class="row">
+    <div class="col-12 text-center">
+        <h1 class="h2 mb-5 fw-light">Actividad 18 <small>Sistemas Web</small></h1>
+    </div>
+    <div class="d-none d-sm-block col-sm-6 col-md-6 col-lg-7 col-xl-8">
+        <div class="display-5 mb-4">@ViewData["Title"]</div>
+        <p>
+            El validador indicará el tipo de tarjeta de crédito y utilizando el algoritmo de 
+            <a href="https://en.wikipedia.org/wiki/Luhn_algorithm" target="_blank"><i>Luhn</i></a>,
+            verificará si la tarjeta de crédito es válida.
+        </p>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6 col-lg-5 col-xl-4">
+        <div class="card">
+            <h5 class="card-header">Detalles de pago</h5>
+            <div class="card-body">
+                <form>
+                    <label asp-for="Card_number" class="form-label"></label>
+                    <div class="input-group">
+                        <span class="input-group-text" id="card-type-addon1"><span class="card-type"></span></span>
+                        <input asp-for="Card_number" class="form-control" placeholder="0000 0000 0000 0000"
+                        aria-label ="Tarjeta de crédito" aria-describedby="card-type-addon1" />
+                        <div class ="card-valid">&#x2713;</div>
+                    </div>
+                    <div class ="mb-3">
+                        <span asp-validation-for="Card_number" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Name" class="form-label"></label>
+                        <input asp-for="Name" type="text" class="form-control text-uppercase" placeholder="Nombre como aparece en la tarjeta" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <div class="mb-3">+
+                                <label asp-for="Expiry" class="form-label"></label>
+                                <input asp-for="Expiry" type="text" maxlength="7" class="form-control" placeholder="mm/yyyy" />
+                                <span asp-validation-for="Expiry" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label asp-for="Cvv" class="form-label"></label>
+                                <input asp-for="Cvv" type="text" maxlength="3" class="form-control" placeholder="XXX" />
+                                <span asp-validation-for="Cvv" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Pagar</button>
+                </form>
+            </div>
+            <div class="card-footer text-muted small">
+                Este ejemplo válida los primeros digitos de los números de tarjetas mostradas en la parte de abajo.
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 mt-5">
+        <h4>Tarjetas de ejemplo</h4>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <div class="ms-2 me-auto">
+                    <div class="fw-bold">Mastercard</div>
+                    5100 0000 0000 0008
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="ms-2 me-auto">
+                    <div class="fw-bold">Amex</div>
+                    3782 8224 6310 005
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="ms-2 me-auto">
+                    <div class="fw-bold">Visa</div>
+                    4000 0000 0000 0002
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="ms-2 me-auto">
+                    <div class="fw-bold">Discover</div>
+                    6011 0000 0000 0004
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="ms-2 me-auto">
+                    <div class="fw-bold">Visa electron</div>
+                    4026 0000 0000 0002
+                </div>
+            </li>
+        </ul>
+    </div>
+</article>
